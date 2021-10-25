@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/StartMenu.unity
+    guid: 59ee11e1c656f434d87197121f5a6d74
+  - enabled: 1
+    path: Assets/Scenes/Cinema.unity
+    guid: 181b2fa263d2cab42aa6d22aecd2481c
+  - enabled: 1
+    path: Assets/Scenes/ModesMenu.unity
+    guid: 5f7f5918d77ff204cbd0d988a3a191f1
+  - enabled: 1
+    path: Assets/Scenes/HalfMode.unity
+    guid: 9def1e9abc40daf409d80ba6311309ee
+  - enabled: 1
+    path: Assets/Scenes/FindMode.unity
+    guid: 5cb14c853ab7a2b41bc8013ac32c4e21
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 6d998d524aecf604ab0ad82166de59f9,
+      type: 2}
