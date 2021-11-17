@@ -1,38 +1,28 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class StartMenu : MonoBehaviour
 {
-    public Image ExitButton;
-    public Image PlayButton;
-    public Image Background;
-    public float animationTime;
-    [SerializeField]
-    private AnimationCurve _colorChangeFunction;
-    private float _startAnimationTime;
-
+    public TMP_InputField inputField;
     private void Start()
-    { 
-        _startAnimationTime = 0;
-    }
-    private void FixedUpdate()
     {
-        if(Time.time - _startAnimationTime > animationTime)
+        if (PlayerPrefs.HasKey(PlayerPrefsKey.PLAYER_NAME) == false)
+            EndInputEdit("");
+        else
+            inputField.text = PlayerPrefs.GetString(PlayerPrefsKey.PLAYER_NAME);
+        inputField.onEndEdit.AddListener(EndInputEdit);
+    }
+    public void EndInputEdit(string newNikname)
+    {
+        if (string.IsNullOrWhiteSpace(newNikname) && string.IsNullOrEmpty(newNikname))
         {
-            _startAnimationTime = Time.time;
+            newNikname = "Unnamed";
+            inputField.text = newNikname;
         }
-        ExitButton.color = Color.HSVToRGB(0, 0,_colorChangeFunction.Evaluate((Time.time - _startAnimationTime) / animationTime * 2));
-        PlayButton.color = Color.HSVToRGB(0, 0, _colorChangeFunction.Evaluate((Time.time - _startAnimationTime) / animationTime * 2));
-        Background.color = Color.HSVToRGB(0, 0,1- _colorChangeFunction.Evaluate((Time.time - _startAnimationTime) / animationTime* 2));
+        PlayerPrefs.SetString(PlayerPrefsKey.PLAYER_NAME, newNikname);
     }
-
-    public void PlayClick()
-    {
-        SceneManager.LoadScene("ModesMenu");
-    }
-    public void ExitClick()
-    {
-        Application.Quit();
-    }
+    public void PlayClick() => SceneManager.LoadScene("ModesMenu");
+    public void LeaderboardClick() => SceneManager.LoadScene("Leaderboard");
+    public void ExitClick() => Application.Quit();
 }

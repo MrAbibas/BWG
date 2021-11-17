@@ -3,6 +3,13 @@ using UnityEngine.UI;
 
 public class Info : MonoBehaviour
 {
+    [SerializeField]
+    private Text _textBestScore;
+    [SerializeField]
+    private Text _textTimeRemaining;
+    [SerializeField]
+    private Text _textScore;
+
     private int _bestScore;
     public int BestScore
     {
@@ -35,11 +42,4 @@ public class Info : MonoBehaviour
             _textScore.text = value.ToString();
         }
     }
-
-    [SerializeField]
-    private Text _textBestScore;
-    [SerializeField]
-    private Text _textTimeRemaining;
-    [SerializeField]
-    private Text _textScore;
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class HalfMode : MonoBehaviour
@@ -13,24 +11,25 @@ public class HalfMode : MonoBehaviour
     private float _colorUP;
     private float _colorDown;
     private bool _isPlay;
-    [SerializeField]
     private float _coldownTime;
+    [SerializeField]
+    private float _startColdownTime;
     [SerializeField]
     private float _coldownAcceleration;
 
     private void Start()
     {
+        _coldownTime = _startColdownTime;
         info = FindObjectOfType<Info>();
         restart.SetActive(false);
         info.Score = 0;
         _isPlay = true;
         _lastTime = Time.time;
-        info.BestScore = PlayerPrefs.GetInt(PlayerPrefsKey.HALF_MODE_BEST_SCORE, 0);
+        info.BestScore = PlayerPrefs.GetInt(PlayerPrefsKey.BEST_SCORE_HALF_MODE, 0);
         info.TimeRemaining = 0;
         info.Score = 0;
         NextTik();
     }
-
     private void NextTik()
     {
         _lastTime = Time.time;
@@ -75,8 +74,8 @@ public class HalfMode : MonoBehaviour
     private void Losing()
     {
         info.TimeRemaining = 0;
-        if (info.Score > PlayerPrefs.GetInt(PlayerPrefsKey.HALF_MODE_BEST_SCORE))
-            PlayerPrefs.SetInt(PlayerPrefsKey.HALF_MODE_BEST_SCORE, info.Score);
+        if (info.Score > PlayerPrefs.GetInt(PlayerPrefsKey.BEST_SCORE_HALF_MODE))
+            PlayerPrefs.SetInt(PlayerPrefsKey.BEST_SCORE_HALF_MODE, info.Score);
 
         _isPlay = false;
         restart.SetActive(true);
